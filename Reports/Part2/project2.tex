@@ -7,6 +7,7 @@
 \usepackage{enumerate}
 \usepackage{enumitem}
 \usepackage{graphicx}
+\usepackage{pdfpages}
 
 \setlist{nosep}
 
@@ -38,13 +39,16 @@ information about the weather users are not interested in.
 
 \pagebreak
 
-\noindent\textbf{Users and Tasks:} \\\\
+\noindent\textbf{Use case diagram:} \\\\
+\includegraphics[scale=0.6]{usecasediagram.png} \\\\
+\noindent\textbf{Use case documents:} \\\\
 \includegraphics[scale=0.7]{usecase1.png} \\\\
 \includegraphics[scale=0.7]{usecase2.png} \\\\
 \includegraphics[scale=0.7]{usecase3.png} \\\\
 %insert use case diagrams
 
-\paragraph{Activity Diagram:}
+%\paragraph{Activity Diagram:}
+\includepdf[pages={1}]{ActivityDiagram.pdf}
 %activity of most complex use case
 
 \paragraph{Data Storage:} The application will use the Android internal storage in XML format.
@@ -52,19 +56,26 @@ The storage requirements are not very large, in particular user preferences and 
 will needed to be stored, which we anticipate will be a few dozen items.
 The User Preferences class and Clothes Recommendation class will be retrieving and modifying data from data storage.
 If XML format ends up not being adequate we will use a SQL Lite database.
+\\\\
+\noindent\textbf{UI Mockups:} \\\\
+\includegraphics[scale=0.4]{Login.png}\\\\
+\includegraphics[scale=0.4]{mainscreen.png}\\\\
+\includegraphics[scale=0.5]{suggestions.png}\\\\
+\includegraphics[scale=0.5]{Savedlists.png}\\\\
 
-\paragraph{UI Mockups:} 
-
+\paragraph{User Interactions}
 \paragraph{User Interaction 1:} Viewing Recommendations\\\\
 \includegraphics[scale=0.5]{us_01_veiwrecs.png}
 
 \paragraph{User Interaction 2:} Setting Personal Preferences\\\\
 \includegraphics[scale=0.45]{uc2_settingpersonalprefssequence.png}
 
+\pagebreak
 \paragraph{User Interaction 3:} Setting Personal Preferences\\\\
-\includegraphics[scale=0.5]{uc_03_savefashionsuggestion.png}
+\includegraphics[scale=0.5]{uc_03_savefashionsuggestion.png}\\
 
 
 
-\paragraph{Class Diagram}
+\noindent\textbf{Class Diagram:} \\\\
+\includegraphics[scale=0.45]{classdiagram.png}
 \end{document}
