@@ -33,6 +33,8 @@ public class Forecast {
     private Context mContext;
     private String mProvider;
 
+    private boolean fetchFinished = false;
+
     private String apiKey = "0054ddc6f867a627fb6464b0c69c30dc";
 
     public Forecast(Context context) {
@@ -92,6 +94,21 @@ public class Forecast {
                     .url(forecastURL)
                     .build();
 
+            /* Run on main thread, causes error
+            try {
+                Response response = client.newCall(request).execute();
+                String rawJSON = response.body().string();
+                JSONObject parsedJSON = new JSONObject(rawJSON);
+                parseWeatherJSON(parsedJSON);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            */
+
+
             client.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(Request request, IOException e) {
@@ -104,7 +121,10 @@ public class Forecast {
                     String rawJSON = response.body().string();
                     try {
                         JSONObject parsedJSON = new JSONObject(rawJSON);
+
                         parseWeatherJSON(parsedJSON);
+                        fetchFinished = true;
+                        //System.out.println("SUMMARY IS " + mSummary);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -112,6 +132,7 @@ public class Forecast {
                     }
                 }
             });
+
         }
         else {
             Toast.makeText(mContext, "Location not available", Toast.LENGTH_LONG).show();
@@ -131,6 +152,10 @@ public class Forecast {
         mTemp = todayForecast.getDouble("temperatureMax");
         mWindSpeed = todayForecast.getDouble("windSpeed");
 
+    }
+
+    public void printSummary() {
+        System.out.println(mSummary);
     }
 
     public String getSkyCond() {
@@ -163,5 +188,13 @@ public class Forecast {
 
     public void setWindSpeed(double mWindSpeed) {
         this.mWindSpeed = mWindSpeed;
+    }
+
+    public Location getmLocation() {
+        return mLocation;
+    }
+
+    public boolean isFetchFinished() {
+        return fetchFinished;
     }
 }
