@@ -20,12 +20,17 @@ public class Recommender {
     public Recommender(Forecast forecast) {
         mTemp = forecast.getTemp();
 
+        //dummy data for test
+
+
 
         mTempType = Types.Temp.VERY_COLD;
+
         for (Types.Temp t : Types.Temp.values()) {
             if (mTemp >= t.showTemp()) {
                 mTempType = t;
             }
         }
+        System.out.println(mTempType);
     }
 }
