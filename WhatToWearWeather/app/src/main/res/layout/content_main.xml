@@ -10,18 +10,13 @@
     tools:showIn="@layout/activity_main" tools:context=".MainActivity"
     android:background="#ffd905">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
-
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/layoutSummary"
+            >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -34,35 +29,227 @@
                 android:layout_marginBottom="50dp"
                 android:textSize="24sp"
                 android:gravity="center_horizontal" />
+
+
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/row1"
+        android:layout_below="@+id/layoutSummary"
+        android:layout_marginBottom="10dp"
+        >
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/headView"
+            android:background="@drawable/head"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/textView2" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Head suggestion"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/head"
+            android:layout_weight="4"
+            android:layout_marginLeft="20dp"
+            />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/textView3" />
-            </LinearLayout>
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"></LinearLayout>
-        </LinearLayout>
+
     </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/row2"
+        android:layout_below="@+id/row1"
+        android:layout_marginBottom="10dp"
+        >
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="50dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/accessoryView"
+            android:background="@drawable/accessories"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Accessory suggestion"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/accessory"
+            android:layout_weight="4"
+            android:layout_marginLeft="20dp"
+            />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/row3"
+        android:layout_below="@+id/row2"
+        android:layout_marginBottom="10dp"
+        >
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="50dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/shirtView"
+            android:background="@drawable/shirt"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shirt suggestion"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/shirt"
+            android:layout_weight="4"
+            android:layout_marginLeft="20dp"
+            />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/row4"
+        android:layout_below="@+id/row3"
+        android:layout_marginBottom="10dp"
+        >
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="50dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/pantView"
+            android:background="@drawable/pant"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pant suggestion"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/pant"
+            android:layout_weight="4"
+            android:layout_marginLeft="20dp"
+
+            />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/row5"
+        android:layout_below="@+id/row4"
+        >
+
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/shoeView"
+            android:background="@drawable/shoe"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shoe suggestion"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/shoe"
+            android:layout_weight="4"
+            android:layout_marginLeft="20dp"
+            />
+
+
+
+    </LinearLayout>
+
+<!--
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/headView"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="45dp"
+            android:background="@drawable/head"/>
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/accessoryImage"
+            android:layout_marginTop="160dp"
+            android:layout_marginLeft="-80dp"
+            android:background="@drawable/accessories"
+
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Accessory suggestion"
+        android:id="@+id/accessory"
+        android:layout_below="@+id/head"
+        android:layout_alignLeft="@+id/head"
+        android:layout_alignStart="@+id/head"
+        android:layout_marginTop="70dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shirt suggestion"
+        android:id="@+id/shirt"
+        android:layout_below="@+id/accessory"
+        android:layout_alignLeft="@+id/accessory"
+        android:layout_alignStart="@+id/accessory"
+        android:layout_marginTop="70dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pant suggestion"
+        android:id="@+id/pant"
+        android:layout_below="@+id/shirt"
+        android:layout_alignLeft="@+id/shirt"
+        android:layout_alignStart="@+id/shirt"
+        android:layout_marginTop="70dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shoe suggestion"
+        android:id="@+id/shoe"
+        android:layout_below="@+id/pant"
+        android:layout_alignLeft="@+id/pant"
+        android:layout_alignStart="@+id/pant"
+        android:layout_marginTop="70dp"
+        />
+
+-->
+
 </RelativeLayout>
