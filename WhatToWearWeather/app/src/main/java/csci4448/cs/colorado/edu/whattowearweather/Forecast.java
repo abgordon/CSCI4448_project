@@ -37,49 +37,14 @@ public class Forecast {
 
     private String apiKey = "0054ddc6f867a627fb6464b0c69c30dc";
 
-    public Forecast(Context context) {
+    public Forecast(Context context, Location location) {
         mContext = context;
+        mLocation = location;
     }
 
-    public Location updateLocation() {
-        // Acquire a reference to the system Location Manager
-        LocationManager locationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
-
-        // Define a listener that responds to location updates
-        LocationListener locationListener = new LocationListener() {
-            public void onLocationChanged(Location location) {
-                // Called when a new location is found by the network location provider.
-                //makeUseOfNewLocation(location);
-            }
-
-            public void onStatusChanged(String provider, int status, Bundle extras) {}
-
-            public void onProviderEnabled(String provider) {}
-
-            public void onProviderDisabled(String provider) {}
-        };
-
-        // Creating an empty criteria object
-        Criteria criteria = new Criteria();
-
-        // Getting the name of the provider that meets the criteria
-        mProvider = locationManager.getBestProvider(criteria, true);
-
-        // Register the listener with the Location Manager to receive location updates
-        locationManager.requestLocationUpdates(mProvider, 0, 0, locationListener);
-
-        mLocation = locationManager.getLastKnownLocation(mProvider);
-
-        // Remove the listener you previously added
-        locationManager.removeUpdates(locationListener);
-
-        return mLocation;
-    }
 
     //
     public void updateForecast() {
-
-        updateLocation();
 
         if (mLocation != null) {
 
@@ -94,7 +59,7 @@ public class Forecast {
                     .url(forecastURL)
                     .build();
 
-            /* Run on main thread, causes error
+            //Fetch request not async
             try {
                 Response response = client.newCall(request).execute();
                 String rawJSON = response.body().string();
@@ -106,9 +71,8 @@ public class Forecast {
                 e.printStackTrace();
             }
 
-            */
-
-
+            //Fetch request async, calling function in new thread so not necessary
+            /*
             client.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(Request request, IOException e) {
@@ -132,6 +96,7 @@ public class Forecast {
                     }
                 }
             });
+            */
 
         }
         else {

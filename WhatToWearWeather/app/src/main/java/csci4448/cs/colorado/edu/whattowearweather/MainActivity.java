@@ -1,6 +1,7 @@
 package csci4448.cs.colorado.edu.whattowearweather;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,18 +24,26 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        final Forecast forecast = new Forecast(this);
-        forecast.updateLocation();
-        forecast.updateForecast();
+        LocationFinder locationFinder = new LocationFinder(this);
+        Location currentLocation = locationFinder.updateLocation();
 
-        //Horrible hack to wait for background thread to finish
-        while (forecast.isFetchFinished() != true) {
+        final Forecast forecast = new Forecast(this,currentLocation);
 
+        //Have to run networking in background instead of UI thread
+        Thread t = new Thread(new Runnable() {
+            public void run() {
+                forecast.updateForecast();
+            }
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
         mSummary = (TextView)findViewById(R.id.Summary);
         mSummary.setText(forecast.getSummary());
-
-
 
     }
 
