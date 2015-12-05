@@ -73,26 +73,23 @@
         android:layout_marginBottom="10dp"
         >
 
+
         <ImageView
             android:layout_weight="1"
             android:layout_width="50dp"
             android:layout_height="80dp"
             android:layout_gravity="center_vertical"
-            android:id="@+id/accessoryView"
-            android:background="@drawable/accessories"/>
+            android:id="@+id/imageView4"
+            android:background="@drawable/shirt"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Accessory suggestion"
+            android:text="Shirt suggestion"
             android:layout_gravity="center_vertical"
-            android:id="@+id/accessory"
+            android:id="@+id/textView4"
             android:layout_weight="4"
-            android:layout_marginLeft="20dp"
-            />
-
-
-
+            android:layout_marginLeft="20dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -109,19 +106,17 @@
             android:layout_width="50dp"
             android:layout_height="80dp"
             android:layout_gravity="center_vertical"
-            android:id="@+id/shirtView"
-            android:background="@drawable/shirt"/>
+            android:id="@+id/imageView3"
+            android:background="@drawable/pant"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Shirt suggestion"
+            android:text="Pant suggestion"
             android:layout_gravity="center_vertical"
-            android:id="@+id/shirt"
+            android:id="@+id/textView3"
             android:layout_weight="4"
-            android:layout_marginLeft="20dp"
-            />
-
+            android:layout_marginLeft="20dp"/>
 
 
     </LinearLayout>
@@ -138,22 +133,19 @@
         <ImageView
             android:layout_weight="1"
             android:layout_width="50dp"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             android:layout_gravity="center_vertical"
-            android:id="@+id/pantView"
-            android:background="@drawable/pant"/>
+            android:id="@+id/imageView2"
+            android:background="@drawable/shoe"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pant suggestion"
+            android:text="Shoe suggestion"
             android:layout_gravity="center_vertical"
-            android:id="@+id/pant"
+            android:id="@+id/textView2"
             android:layout_weight="4"
-            android:layout_marginLeft="20dp"
-
-            />
-
+            android:layout_marginLeft="20dp"/>
 
 
     </LinearLayout>
@@ -169,21 +161,19 @@
         <ImageView
             android:layout_weight="1"
             android:layout_width="50dp"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:layout_gravity="center_vertical"
-            android:id="@+id/shoeView"
-            android:background="@drawable/shoe"/>
+            android:id="@+id/imageView"
+            android:background="@drawable/accessories"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Shoe suggestion"
+            android:text="Accessory suggestion"
             android:layout_gravity="center_vertical"
-            android:id="@+id/shoe"
+            android:id="@+id/textView"
             android:layout_weight="4"
-            android:layout_marginLeft="20dp"
-            />
-
+            android:layout_marginLeft="20dp"/>
 
 
     </LinearLayout>
