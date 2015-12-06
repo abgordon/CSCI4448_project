@@ -19,16 +19,11 @@ public class Recommender {
 //    private ClothingItem mHead;
 //    private ClothingItem mOther;
 
-    private double mTemp;
-
-    private Types.Temp mTempType;
-
-    int gender = 0;
-
-    public ArrayList<ClothingItem> getRecommendation(Forecast forecast){
+    public ClothingItem getRecommendation(Forecast forecast, DBHelper dbhelper){
         // Get forecast data
-        mTemp = forecast.getTemp();
-        mTempType = Types.Temp.VERY_COLD;
+        int mGender = 0;
+        double mTemp = forecast.getTemp();
+        Types.Temp mTempType = Types.Temp.VERY_COLD;
         for (Types.Temp t : Types.Temp.values()) {
             if (mTemp >= t.showTemp()) {
                 mTempType = t;
@@ -37,7 +32,9 @@ public class Recommender {
         // Build the ClothingItem array
         ArrayList<ClothingItem> recommendations = new ArrayList<ClothingItem>();
 
-        return recommendations;
+        ClothingItem result = dbhelper.getClothingItem(mTempType, Types.BodyPart.CHEST, mGender);
+        //recommendations =;
+        return result;
     }
 
     public ArrayList<ClothingItem> Recommender(Forecast forecast) {

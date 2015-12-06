@@ -24,7 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private HashMap hp;
 
     public DBHelper(Context context) {
-        super(context, DATABASE_NAME , null, 1);
+        super(context, DATABASE_NAME, null, 1);
     }
 
     @Override
@@ -32,19 +32,19 @@ public class DBHelper extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table " + CLOTHING_TABLE_NAME + " ("
-                        +CLOTHING_COLUMN_ID+" integer primary key, "
-                        +CLOTHING_COLUMN_TEMPTYPE   + " text,"
-                        +CLOTHING_COLUMN_PRECIPTYPE + " text,"
-                        +CLOTHING_COLUMN_BODYPART   + " text,"
-                        +CLOTHING_COLUMN_GENDERTYPE + " integer,"
-                        +CLOTHING_COLUMN_DESCRIPTION+ " text)"
+                        + CLOTHING_COLUMN_ID + " integer primary key, "
+                        + CLOTHING_COLUMN_TEMPTYPE + " text,"
+                        + CLOTHING_COLUMN_PRECIPTYPE + " text,"
+                        + CLOTHING_COLUMN_BODYPART + " text,"
+                        + CLOTHING_COLUMN_GENDERTYPE + " integer,"
+                        + CLOTHING_COLUMN_DESCRIPTION + " text)"
         );
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // TODO Auto-generated method stub
-        db.execSQL("DROP TABLE IF EXISTS "+CLOTHING_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + CLOTHING_TABLE_NAME);
         onCreate(db);
     }
 
@@ -69,14 +69,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getDataFromID(int id){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from "+CLOTHING_TABLE_NAME+" where id="+id+"", null );
+        Cursor res =  db.rawQuery("select * from " + CLOTHING_TABLE_NAME + " where id=" + id + "", null);
         return res;
     }
 
-    public Cursor getData(int temperature, int gender){
+    public Cursor getData(Types.Temp temperature, Types.BodyPart bodyPart, int gender){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from "+CLOTHING_TABLE_NAME+" where mTempType="+temperature
-                +" and mGenderType="+gender, null );
+        String request = "select * from "+CLOTHING_TABLE_NAME+" where Temperature="+temperature.toString()
+                +" and Gender="+gender+" and BodyPart="+bodyPart.toString();
+        Cursor res =  db.rawQuery( request, null );
         return res;
     }
 
@@ -84,6 +85,25 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         int numRows = (int) DatabaseUtils.queryNumEntries(db, CLOTHING_TABLE_NAME);
         return numRows;
+    }
+
+
+    public ClothingItem getClothingItem(Types.Temp temperature, Types.BodyPart bodyPart, int gender)
+    {
+        Cursor resultSet = getData(temperature, bodyPart, gender);
+        resultSet.moveToFirst();
+        String sTemp     = resultSet.getString(resultSet.getColumnIndex((CLOTHING_COLUMN_TEMPTYPE)));
+        String sPrecip   = resultSet.getString(resultSet.getColumnIndex((CLOTHING_COLUMN_PRECIPTYPE)));
+        String sBodyPart = resultSet.getString(resultSet.getColumnIndex((CLOTHING_COLUMN_BODYPART)));
+        int iGender      = resultSet.getInt(resultSet.getColumnIndex((CLOTHING_COLUMN_GENDERTYPE)));;
+        String iDescription = resultSet.getString(resultSet.getColumnIndex(CLOTHING_COLUMN_DESCRIPTION));
+        if (!resultSet.isClosed())
+        {
+            resultSet.close();
+        }
+        ClothingItem result = new ClothingItem(Types.Temp.valueOf(sTemp),Types.Precip.valueOf(sPrecip),
+                Types.BodyPart.valueOf(sBodyPart),  iGender, iDescription);
+        return result;
     }
 
     /* Not functional, delete if not needed
