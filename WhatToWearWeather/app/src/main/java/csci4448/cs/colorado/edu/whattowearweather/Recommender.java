@@ -25,17 +25,22 @@ public class Recommender {
 
     int gender = 0;
 
-    public ArrayList<ClothingItem> Recommender(Forecast forecast) {
+    public ArrayList<ClothingItem> getRecommendation(Forecast forecast){
+        // Get forecast data
         mTemp = forecast.getTemp();
-
-
         mTempType = Types.Temp.VERY_COLD;
-
         for (Types.Temp t : Types.Temp.values()) {
             if (mTemp >= t.showTemp()) {
                 mTempType = t;
             }
         }
+        // Build the ClothingItem array
+        ArrayList<ClothingItem> recommendations = new ArrayList<ClothingItem>();
+
+        return recommendations;
+    }
+
+    public ArrayList<ClothingItem> Recommender(Forecast forecast) {
 
         //SQLiteDatabase clothes_db = openOrCreateDatabase("clothes_db", MODE_PRIVATE, null);
         /*
