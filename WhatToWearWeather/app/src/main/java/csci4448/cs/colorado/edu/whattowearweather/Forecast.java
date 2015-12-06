@@ -69,6 +69,7 @@ public class Forecast {
                 e.printStackTrace();
             } catch (JSONException e) {
                 e.printStackTrace();
+               // Toast.makeText(mContext, "Weather data request failed (in onResponse)", Toast.LENGTH_LONG).show();
             }
 
             //Fetch request async, calling function in new thread so not necessary
@@ -100,7 +101,7 @@ public class Forecast {
 
         }
         else {
-            Toast.makeText(mContext, "Location not available", Toast.LENGTH_LONG).show();
+            System.out.println("location was null in updateForecast()");
         }
     }
 

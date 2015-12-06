@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,10 +43,18 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        mSummary = (TextView)findViewById(R.id.Summary);
-        mSummary.setText(forecast.getSummary());
 
+        mSummary = (TextView)findViewById(R.id.Summary);
+        if (forecast.getSummary() == null) {
+            Toast.makeText(this, "Network Unvailable", Toast.LENGTH_LONG).show();
+            mSummary.setText("No forecast available");
+        }
+        else {
+            mSummary.setText(forecast.getSummary());
+        }
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

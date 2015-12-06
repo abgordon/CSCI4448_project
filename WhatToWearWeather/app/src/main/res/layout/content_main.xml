@@ -53,12 +53,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Head suggestion"
+            android:text="Loading suggestion..."
             android:layout_gravity="center_vertical"
             android:id="@+id/head"
             android:layout_weight="4"
             android:layout_marginLeft="20dp"
-            />
+            android:gravity="center" />
 
 
 
@@ -84,12 +84,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Accessory suggestion"
+            android:text="Loading suggestion..."
             android:layout_gravity="center_vertical"
             android:id="@+id/accessory"
             android:layout_weight="4"
             android:layout_marginLeft="20dp"
-            />
+            android:gravity="center" />
 
 
 
@@ -115,12 +115,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Shirt suggestion"
+            android:text="Loading suggestion..."
             android:layout_gravity="center_vertical"
             android:id="@+id/shirt"
             android:layout_weight="4"
             android:layout_marginLeft="20dp"
-            />
+            android:gravity="center" />
 
 
 
@@ -146,13 +146,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pant suggestion"
+            android:text="Loading suggestion..."
             android:layout_gravity="center_vertical"
             android:id="@+id/pant"
             android:layout_weight="4"
             android:layout_marginLeft="20dp"
 
-            />
+            android:gravity="center" />
 
 
 
@@ -177,12 +177,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Shoe suggestion"
+            android:text="Loading suggestion..."
             android:layout_gravity="center_vertical"
             android:id="@+id/shoe"
             android:layout_weight="4"
             android:layout_marginLeft="20dp"
-            />
+            android:gravity="center" />
 
 
 
