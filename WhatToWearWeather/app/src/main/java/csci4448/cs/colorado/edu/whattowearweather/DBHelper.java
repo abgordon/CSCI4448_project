@@ -63,7 +63,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("mBodyPart", mBodyPart.name());
         contentValues.put("mGenderType", mGenderType);
         contentValues.put("mDescription", mDescription);
-        db.insert("clothingItems", null, contentValues);
+        db.insert(CLOTHING_TABLE_NAME, null, contentValues);
         return true;
     }
 
