@@ -20,6 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String CLOTHING_COLUMN_PRECIPTYPE = "mPrecipType";
     public static final String CLOTHING_COLUMN_BODYPART = "mBodyPart";
     public static final String CLOTHING_COLUMN_GENDERTYPE = "mGenderType";
+    public static final String CLOTHING_COLUMN_DESCRIPTION = "mDescription";
     private HashMap hp;
 
     public DBHelper(Context context) {
@@ -30,11 +31,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
         db.execSQL(
-                "create table " + CLOTHING_TABLE_NAME + " " +
-                        "(id integer primary key, "
-                        + CLOTHING_COLUMN_TEMPTYPE + " text,"
-                        + CLOTHING_COLUMN_PRECIPTYPE + " text," +
-                        +CLOTHING_COLUMN_BODYPART" text, " +
+                "create table " + CLOTHING_TABLE_NAME + " "
+                        +"(id integer primary key, "
+                        +CLOTHING_COLUMN_TEMPTYPE   + " text,"
+                        +CLOTHING_COLUMN_PRECIPTYPE + " text,"
+                        +CLOTHING_COLUMN_BODYPART   + " text, "
                         +CLOTHING_COLUMN_GENDERTYPE + " text)"
         );
     }
@@ -47,14 +48,20 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public boolean insertClothingItem (Types.Temp mTempType, Types.Precip mPrecipType, Types.BodyPart mBodyPart,
-            int mGenderType, string mDescription)
+            int mGenderType, String mDescription)
     {
-        SQLiteDatebase db = this.getWritableDatabase();
+        String tempTypeName = mTempType.name();
+        String precipTypeName = mPrecipType.name();
+        String bodyTypeName = mBodyPart.name();
+        //String genderTypeName = mGenderType.name();
+
+        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("mTempType", myTempType);
-        contentValues.put("mPrecipType", mPrecipType);
-        contentValues.put("mBodyPart", mBodyPart);
+        contentValues.put("mTempType", tempTypeName);
+        contentValues.put("mPrecipType", precipTypeName);
+        contentValues.put("mBodyPart", mBodyPart.name());
         contentValues.put("mGenderType", mGenderType);
+        contentValues.put("mDescription", mDescription);
         db.insert("clothingItems", null, contentValues);
         return true;
     }
@@ -78,18 +85,21 @@ public class DBHelper extends SQLiteOpenHelper {
         return numRows;
     }
 
+    /* Not functional, delete if not needed
     public boolean updateClothingItem (Types.Temp mTempType, Types.Precip mPrecipType, Types.BodyPart mBodyPart,
-                                       int mGenderType)
+                                       int mGenderType, String mDescription)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("mTempType", myTempType);
-        contentValues.put("mPrecipType", mPrecipType);
-        contentValues.put("mBodyPart", mBodyPart);
+        contentValues.put("mTempType", mTempType.name());
+        contentValues.put("mPrecipType", mPrecipType.name());
+        contentValues.put("mBodyPart", mBodyPart.name());
         contentValues.put("mGenderType", mGenderType);
+        contentValues.put("mDescription", mDescription);
         db.update(CLOTHING_TABLE_NAME, contentValues, "id = ? ", new String[] { Integer.toString(id) } );
         return true;
     }
+    */
 
     public Integer deleteContact (Integer id)
     {

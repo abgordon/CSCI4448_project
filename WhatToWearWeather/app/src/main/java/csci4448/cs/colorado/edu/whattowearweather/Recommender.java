@@ -37,7 +37,8 @@ public class Recommender {
             }
         }
 
-        SQLiteDatabase clothes_db = openOrCreateDatabase("clothes_db", MODE_PRIVATE, null);
+        //SQLiteDatabase clothes_db = openOrCreateDatabase("clothes_db", MODE_PRIVATE, null);
+        /*
         String request = new String("Select * from TutorialsPoint where Temperature=%d and Gender=%d and BodyPart=CHEST", mTempType, gender);
         Cursor resultSet = clothes_db.rawQuery(request, null);
 
@@ -47,7 +48,7 @@ public class Recommender {
         while (resultSet.next()) {
             //create clothing items and return them
             int temp = resultSet.getInt("Temperature");
-            int gender = resultSet.getInt("Gender")
+            int gender = resultSet.getInt("Gender");
             String name = resultSet.getString("Name");
             String bodypart = new String("CHEST");
             Types.Precip precip = resultSet.getString("Precipitation");
@@ -57,7 +58,11 @@ public class Recommender {
             recommendations.add(current);
         }
         resultSet.close();
-
+        */
+        ArrayList<ClothingItem> recommendations = new ArrayList<ClothingItem>();
+        ;
         return recommendations;
+
+        }
 
     }
