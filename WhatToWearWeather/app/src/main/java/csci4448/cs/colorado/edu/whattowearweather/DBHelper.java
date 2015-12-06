@@ -14,7 +14,7 @@ import android.database.sqlite.SQLiteDatabase;
 public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MyDBName.db";
-    public static final String CLOTHING_TABLE_NAME = "clothing";
+    public static final String CLOTHING_TABLE_NAME = "clothingItems";
     public static final String CLOTHING_COLUMN_ID = "id";
     public static final String CLOTHING_COLUMN_TEMPTYPE = "mTempType";
     public static final String CLOTHING_COLUMN_PRECIPTYPE = "mPrecipType";
@@ -32,7 +32,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table " + CLOTHING_TABLE_NAME + " ("
-                        + CLOTHING_COLUMN_ID + " integer primary key, "
+                        //+ CLOTHING_COLUM_ + " integer primary key, "
                         + CLOTHING_COLUMN_TEMPTYPE + " text,"
                         + CLOTHING_COLUMN_PRECIPTYPE + " text,"
                         + CLOTHING_COLUMN_BODYPART + " text,"
@@ -63,7 +63,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("mBodyPart", mBodyPart.name());
         contentValues.put("mGenderType", mGenderType);
         contentValues.put("mDescription", mDescription);
-        db.insert("clothingItems", null, contentValues);
+        db.insert(CLOTHING_TABLE_NAME, null, contentValues);
         return true;
     }
 
@@ -75,8 +75,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getData(Types.Temp temperature, Types.BodyPart bodyPart, int gender){
         SQLiteDatabase db = this.getReadableDatabase();
-        String request = "select * from "+CLOTHING_TABLE_NAME+" where Temperature="+temperature.toString()
-                +" and Gender="+gender+" and BodyPart="+bodyPart.toString();
+        String request = "select * from "+CLOTHING_TABLE_NAME+" where Temperature="+temperature.name()
+                +" and Gender="+gender+" and BodyPart="+bodyPart.name();
         Cursor res =  db.rawQuery( request, null );
         return res;
     }
