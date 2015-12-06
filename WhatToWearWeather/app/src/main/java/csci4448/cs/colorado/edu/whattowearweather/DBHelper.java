@@ -31,12 +31,13 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
         db.execSQL(
-                "create table " + CLOTHING_TABLE_NAME + " "
-                        +"(id integer primary key, "
+                "create table " + CLOTHING_TABLE_NAME + " ("
+                        +CLOTHING_COLUMN_ID+" integer primary key, "
                         +CLOTHING_COLUMN_TEMPTYPE   + " text,"
                         +CLOTHING_COLUMN_PRECIPTYPE + " text,"
-                        +CLOTHING_COLUMN_BODYPART   + " text, "
-                        +CLOTHING_COLUMN_GENDERTYPE + " text)"
+                        +CLOTHING_COLUMN_BODYPART   + " text,"
+                        +CLOTHING_COLUMN_GENDERTYPE + " integer,"
+                        +CLOTHING_COLUMN_DESCRIPTION+ " text)"
         );
     }
 
