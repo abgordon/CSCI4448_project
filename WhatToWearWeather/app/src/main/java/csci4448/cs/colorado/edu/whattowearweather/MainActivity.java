@@ -11,12 +11,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-<<<<<<< HEAD
 import android.widget.Toast;
-=======
 import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
->>>>>>> 8df5a24dc285967643b0b435b2c604314cf2fecc
 
 public class MainActivity extends AppCompatActivity {
 
@@ -76,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-<<<<<<< HEAD
-
         mSummary = (TextView)findViewById(R.id.Summary);
         if (forecast.getSummary() == null) {
             Toast.makeText(this, "Network Unvailable", Toast.LENGTH_LONG).show();
@@ -86,8 +81,6 @@ public class MainActivity extends AppCompatActivity {
         else {
             mSummary.setText(forecast.getSummary());
         }
-=======
->>>>>>> 8df5a24dc285967643b0b435b2c604314cf2fecc
     }
 
 
