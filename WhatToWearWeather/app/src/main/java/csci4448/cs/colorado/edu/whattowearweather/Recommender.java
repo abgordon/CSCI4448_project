@@ -1,5 +1,6 @@
 package csci4448.cs.colorado.edu.whattowearweather;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -12,7 +13,7 @@ import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
  */
 public class Recommender {
 
-//    private ClothingItem mFeet;
+    //    private ClothingItem mFeet;
 //    private ClothingItem mLegs;
     private ClothingItem mChest;
 //    private ClothingItem mHands;
@@ -20,6 +21,7 @@ public class Recommender {
 //    private ClothingItem mOther;
 
     private double mTemp;
+    private Context mContext;
 
     private Types.Temp mTempType;
 
@@ -37,17 +39,23 @@ public class Recommender {
             }
         }
 
-        SQLiteDatabase clothes_db = openOrCreateDatabase("clothes_db", MODE_PRIVATE, null);
-        String request = new String("Select * from TutorialsPoint where Temperature=%d and Gender=%d and BodyPart=CHEST", mTempType, gender);
+
+        //SQLiteDatabase clothes_db = openOrCreateDatabase("clothes_db", MODE_PRIVATE, null);
+        SQLiteDatabase clothes_db = openOrCreateDatabase("clothes_db", null, null);
+        //String request = new String("Select * from TutorialsPoint where Temperature=%d and Gender=%d and BodyPart=CHEST", mTempType, gender);
+        String request = "Select * from TutorialsPoint where Temperature=" + mTempType + " and Gender=" + gender + " and BodyPart=CHEST";
         Cursor resultSet = clothes_db.rawQuery(request, null);
 
 
         ArrayList<ClothingItem> recommendations = new ArrayList<ClothingItem>();
         ClothingItem current;
-        while (resultSet.next()) {
+        while (resultSet.moveToNext()) {
             //create clothing items and return them
+
+            /*errors below is because the arguments in the get() functions need to be column indexes */
+
             int temp = resultSet.getInt("Temperature");
-            int gender = resultSet.getInt("Gender")
+            int gender = resultSet.getInt("Gender");
             String name = resultSet.getString("Name");
             String bodypart = new String("CHEST");
             Types.Precip precip = resultSet.getString("Precipitation");
@@ -61,3 +69,4 @@ public class Recommender {
         return recommendations;
 
     }
+}
