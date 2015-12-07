@@ -12,10 +12,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.database.sqlite.SQLiteDatabase;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView mSummary;
+
+    private ArrayList<ClothingItem> mClothes;
+
+    DBHelper mydb;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        mydb = new DBHelper(this);
+        ClothesRecLoader recLoader = new ClothesRecLoader(mydb);
 
         LocationFinder locationFinder = new LocationFinder(this);
         Location currentLocation = locationFinder.updateLocation();
@@ -34,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         Thread t = new Thread(new Runnable() {
             public void run() {
                 forecast.updateForecast();
+
             }
         });
         t.start();
@@ -43,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        Recommender recommender = new Recommender();
+        ClothingItem item = recommender.getRecommendation(forecast, mydb);
 
         mSummary = (TextView)findViewById(R.id.Summary);
         if (forecast.getSummary() == null) {
