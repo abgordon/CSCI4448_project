@@ -1,7 +1,10 @@
 package csci4448.cs.colorado.edu.whattowearweather;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.preference.PreferenceManager;
 
 import java.util.ArrayList;
 
@@ -19,9 +22,12 @@ public class Recommender {
 //    private ClothingItem mHead;
 //    private ClothingItem mOther;
 
-    public ClothingItem getRecommendation(Forecast forecast, DBHelper dbhelper){
+    public ClothingItem getRecommendation(Forecast forecast, Types.BodyPart bodyPart, DBHelper dbhelper, Context context){
         // Get forecast data
-        int mGender = 0;
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        int mGender = Integer.parseInt(prefs.getString("genderType", "0"));
+
         double mTemp = forecast.getTemp();
         Types.Temp mTempType = Types.Temp.COLD;
         for (Types.Temp t : Types.Temp.values()) {
@@ -32,16 +38,18 @@ public class Recommender {
         // Build the ClothingItem array
         ArrayList<ClothingItem> recommendations = new ArrayList<ClothingItem>();
 
-        ClothingItem result = dbhelper.getClothingItem(mTempType, Types.BodyPart.CHEST, mGender);
+        ClothingItem result = dbhelper.getClothingItem(mTempType, bodyPart, mGender);
         //recommendations =;
         return result;
     }
 
+        /*
     public ArrayList<ClothingItem> Recommender(Forecast forecast) {
 
         ArrayList<ClothingItem> recommendations = new ArrayList<ClothingItem>();
         return recommendations;
 
         }
+        */
 
-    }
+}

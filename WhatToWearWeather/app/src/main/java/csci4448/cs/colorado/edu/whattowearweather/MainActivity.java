@@ -13,15 +13,24 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.database.sqlite.SQLiteDatabase;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView mSummary;
+    private TextView mChestTextView;
+    private TextView mLegsTextView;
 
-    private ArrayList<ClothingItem> mClothes;
+    LocationFinder mLocationFinder;
+    Location mCurrentLocation;
+    Forecast mForecast;
 
     DBHelper mydb;
+    ClothesRecLoader recLoader;
+    Recommender mRecommender;
 
 
 
@@ -33,37 +42,22 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mydb = new DBHelper(this);
-        ClothesRecLoader recLoader = new ClothesRecLoader(mydb);
+        recLoader = new ClothesRecLoader(mydb);
+        mRecommender = new Recommender();
 
-        LocationFinder locationFinder = new LocationFinder(this);
-        Location currentLocation = locationFinder.updateLocation();
 
-        final Forecast forecast = new Forecast(this,currentLocation);
 
-        //Have to run networking in background instead of UI thread
-        Thread t = new Thread(new Runnable() {
-            public void run() {
-                forecast.updateForecast();
+        updateLocation();
+        updateForecast();
 
-            }
-        });
-        t.start();
-        try {
-            t.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        Recommender recommender = new Recommender();
-        ClothingItem item = recommender.getRecommendation(forecast, mydb);
 
         mSummary = (TextView)findViewById(R.id.Summary);
-        if (forecast.getSummary() == null) {
+        if (mForecast.getSummary() == null) {
             Toast.makeText(this, "Network Unvailable", Toast.LENGTH_LONG).show();
             mSummary.setText("No forecast available");
         }
         else {
-            mSummary.setText(forecast.getSummary());
+            mSummary.setText(mForecast.getSummary());
         }
     }
 
@@ -91,5 +85,35 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public ClothingItem getRecommendation(Types.BodyPart bodyPart) {
+        ClothingItem item = mRecommender.getRecommendation(mForecast, Types.BodyPart.CHEST, mydb, this);
+        return item;
+    }
+
+
+    public void updateLocation() {
+        mLocationFinder = new LocationFinder(this);
+        mCurrentLocation = mLocationFinder.updateLocation();
+    }
+
+    public void updateForecast() {
+
+        mForecast = new Forecast(this,mCurrentLocation);
+
+        //Have to run networking in background instead of UI thread
+        Thread t = new Thread(new Runnable() {
+            public void run() {
+                mForecast.updateForecast();
+            }
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
