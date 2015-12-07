@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.database.sqlite.SQLiteDatabase;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mSummary;
     private TextView mChestTextView;
     private TextView mLegsTextView;
+    private Button mRefreshButton;
 
     LocationFinder mLocationFinder;
     Location mCurrentLocation;
@@ -46,19 +48,22 @@ public class MainActivity extends AppCompatActivity {
         mRecommender = new Recommender();
 
 
-
         updateLocation();
         updateForecast();
+        updateUI();
+
+        mRefreshButton = (Button) findViewById(R.id.refreshButton);
+        mRefreshButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateLocation();
+                updateForecast();
+                updateUI();
+
+            }
+        });
 
 
-        mSummary = (TextView)findViewById(R.id.Summary);
-        if (mForecast.getSummary() == null) {
-            Toast.makeText(this, "Network Unvailable", Toast.LENGTH_LONG).show();
-            mSummary.setText("No forecast available");
-        }
-        else {
-            mSummary.setText(mForecast.getSummary());
-        }
     }
 
 
@@ -89,10 +94,28 @@ public class MainActivity extends AppCompatActivity {
 
 
     public ClothingItem getRecommendation(Types.BodyPart bodyPart) {
-        ClothingItem item = mRecommender.getRecommendation(mForecast, Types.BodyPart.CHEST, mydb, this);
+        ClothingItem item = mRecommender.getRecommendation(mForecast, bodyPart, mydb, this);
         return item;
     }
 
+    public  void updateUI() {
+
+        mSummary = (TextView)findViewById(R.id.Summary);
+        if (mForecast.getSummary() == null) {
+            Toast.makeText(this, "Network Unvailable", Toast.LENGTH_LONG).show();
+            mSummary.setText("No forecast available");
+        }
+        else {
+            mSummary.setText(mForecast.getSummary());
+
+            mChestTextView = (TextView)findViewById(R.id.shirt);
+            mLegsTextView = (TextView)findViewById(R.id.pant);
+
+            mChestTextView.setText(getRecommendation(Types.BodyPart.CHEST).getmName());
+            mLegsTextView.setText(getRecommendation(Types.BodyPart.LEGS).getmName());
+        }
+
+    }
 
     public void updateLocation() {
         mLocationFinder = new LocationFinder(this);
