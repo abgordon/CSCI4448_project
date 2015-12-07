@@ -10,6 +10,7 @@ public class Types {
     }
 
     public enum Temp {
+        /*
         VERY_COLD (20),
         COLD (30),
         CHILLY (40),
@@ -17,6 +18,9 @@ public class Types {
         WARM (70),
         HOT (80),
         VERY_HOT (90);
+        */
+        COLD (40),
+        WARM (65);
 
 
         int temp;

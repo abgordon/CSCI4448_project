@@ -30,6 +30,8 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
+        System.out.println("IN DATABASE ONCREATE");
+
         db.execSQL(
                 "create table " + CLOTHING_TABLE_NAME + " ("
                         //+ CLOTHING_COLUM_ + " integer primary key, "
@@ -51,8 +53,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public boolean insertClothingItem (Types.Temp mTempType, Types.Precip mPrecipType, Types.BodyPart mBodyPart,
             int mGenderType, String mDescription)
     {
-        String tempTypeName = mTempType.name();
-        String precipTypeName = mPrecipType.name();
+        String tempTypeName = mTempType.toString();
+        String precipTypeName = mPrecipType.toString();
         String bodyTypeName = mBodyPart.name();
         //String genderTypeName = mGenderType.name();
 
@@ -75,8 +77,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getData(Types.Temp temperature, Types.BodyPart bodyPart, int gender){
         SQLiteDatabase db = this.getReadableDatabase();
-        String request = "select * from "+CLOTHING_TABLE_NAME+" where Temperature="+temperature.name()
-                +" and Gender="+gender+" and BodyPart="+bodyPart.name();
+        String request = "select * from "+CLOTHING_TABLE_NAME+" where mTempType="+"'" + temperature.toString() + "'" +" and mGenderType="+gender+" and mBodyPart="+"'"+bodyPart.name()+"'";
+        //String request = "select * from "+CLOTHING_TABLE_NAME+" where mTempType='WARM' and mGenderType="+gender+" and mBodyPart='CHEST'";
         Cursor res =  db.rawQuery( request, null );
         return res;
     }
@@ -94,7 +96,7 @@ public class DBHelper extends SQLiteOpenHelper {
         resultSet.moveToFirst();
         String sTemp     = resultSet.getString(resultSet.getColumnIndex((CLOTHING_COLUMN_TEMPTYPE)));
         String sPrecip   = resultSet.getString(resultSet.getColumnIndex((CLOTHING_COLUMN_PRECIPTYPE)));
-        String sBodyPart = resultSet.getString(resultSet.getColumnIndex((CLOTHING_COLUMN_BODYPART)));
+        String sBodyPart = resultSet.getString(resultSet.getColumnIndex((CLOTHING_COLUMN_BODYPART))); //causing problems
         int iGender      = resultSet.getInt(resultSet.getColumnIndex((CLOTHING_COLUMN_GENDERTYPE)));;
         String iDescription = resultSet.getString(resultSet.getColumnIndex(CLOTHING_COLUMN_DESCRIPTION));
         if (!resultSet.isClosed())

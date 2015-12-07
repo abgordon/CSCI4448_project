@@ -33,25 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mydb = new DBHelper(this);
-        /*
-            hardcode our clothing items for now using following constructor signature:
-            public ClothingItem(Types.Temp temp,Types.Precip precip, Types.BodyPart bodypart,  int gender, String name)
-         */
-        mydb.insertClothingItem(Types.Temp.COLD, Types.Precip.NONE, Types.BodyPart.CHEST, 0, "Cozy Womens Trail Model Fleece Jacket");
-        mydb.insertClothingItem(Types.Temp.COLD, Types.Precip.NONE, Types.BodyPart.CHEST, 0, "Cozy Womens Trail Model Fleece Jacket");
-        mydb.insertClothingItem(Types.Temp.COLD, Types.Precip.NONE, Types.BodyPart.CHEST, 1, "Cozy Men's Trail Model Fleece Jacket");
-        mydb.insertClothingItem(Types.Temp.COLD, Types.Precip.RAIN, Types.BodyPart.CHEST, 0, "North Face MEN'S VENTURE JACKET");
-        mydb.insertClothingItem(Types.Temp.COLD, Types.Precip.RAIN, Types.BodyPart.CHEST, 1, "Face WOMEN'S VENTURE JACKET");
-        mydb.insertClothingItem(Types.Temp.COLD, Types.Precip.SNOW, Types.BodyPart.CHEST, 0, "Carhartt Men's Duck Chore Blanket-Lined Coat");
-        mydb.insertClothingItem(Types.Temp.COLD, Types.Precip.SNOW, Types.BodyPart.CHEST, 1, "FlyLow Gear Jody Down Jacket - Women's");
-        mydb.insertClothingItem(Types.Temp.WARM, Types.Precip.NONE, Types.BodyPart.CHEST, 0, "Floral Print Fit-and-Flare Dress");
-        mydb.insertClothingItem(Types.Temp.WARM, Types.Precip.NONE, Types.BodyPart.CHEST, 1, "dead sexy warm bodies tank top");
-        mydb.insertClothingItem(Types.Temp.WARM, Types.Precip.RAIN, Types.BodyPart.CHEST, 0, "Marmot PreCip Jacket - Men's");
-        mydb.insertClothingItem(Types.Temp.WARM, Types.Precip.RAIN, Types.BodyPart.CHEST, 1, "Marmot PreCip Jacket - Women's");
-
-        //SQLiteDatabase clothes_db = openOrCreateDatabase("clothes_db",MODE_PRIVATE,null);
-        //clothes_db.execSQL("CREATE TABLE IF NOT EXISTS Clothes(Username VARCHAR,Password VARCHAR);");
-        //clothes_db.execSQL("INSERT INTO Clothes VALUES('admin','admin');");
+        ClothesRecLoader recLoader = new ClothesRecLoader(mydb);
 
         LocationFinder locationFinder = new LocationFinder(this);
         Location currentLocation = locationFinder.updateLocation();

@@ -23,7 +23,7 @@ public class Recommender {
         // Get forecast data
         int mGender = 0;
         double mTemp = forecast.getTemp();
-        Types.Temp mTempType = Types.Temp.VERY_COLD;
+        Types.Temp mTempType = Types.Temp.COLD;
         for (Types.Temp t : Types.Temp.values()) {
             if (mTemp >= t.showTemp()) {
                 mTempType = t;
@@ -39,30 +39,7 @@ public class Recommender {
 
     public ArrayList<ClothingItem> Recommender(Forecast forecast) {
 
-        //SQLiteDatabase clothes_db = openOrCreateDatabase("clothes_db", MODE_PRIVATE, null);
-        /*
-        String request = new String("Select * from TutorialsPoint where Temperature=%d and Gender=%d and BodyPart=CHEST", mTempType, gender);
-        Cursor resultSet = clothes_db.rawQuery(request, null);
-
-
         ArrayList<ClothingItem> recommendations = new ArrayList<ClothingItem>();
-        ClothingItem current;
-        while (resultSet.next()) {
-            //create clothing items and return them
-            int temp = resultSet.getInt("Temperature");
-            int gender = resultSet.getInt("Gender");
-            String name = resultSet.getString("Name");
-            String bodypart = new String("CHEST");
-            Types.Precip precip = resultSet.getString("Precipitation");
-
-
-            current = new ClothingItem(temp, precip, bodypart, gender, name);
-            recommendations.add(current);
-        }
-        resultSet.close();
-        */
-        ArrayList<ClothingItem> recommendations = new ArrayList<ClothingItem>();
-        ;
         return recommendations;
 
         }
