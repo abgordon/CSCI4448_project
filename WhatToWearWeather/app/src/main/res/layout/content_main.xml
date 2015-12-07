@@ -8,7 +8,9 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main" tools:context=".MainActivity"
-    android:background="#ffd905">
+    android:background="#ffd905"
+    android:textSize="20sp">
+
 
         <LinearLayout
             android:orientation="vertical"
@@ -16,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:id="@+id/layoutSummary"
+
             >
 
             <TextView
@@ -53,7 +56,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Loading suggestion..."
+            android:text="Coming soon..."
             android:layout_gravity="center_vertical"
             android:id="@+id/head"
             android:layout_weight="4"
@@ -84,7 +87,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Loading suggestion..."
+            android:text="Coming Soon..."
             android:layout_gravity="center_vertical"
             android:id="@+id/accessory"
             android:layout_weight="4"
@@ -177,7 +180,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Loading suggestion..."
+            android:text="Coming Soon..."
             android:layout_gravity="center_vertical"
             android:id="@+id/shoe"
             android:layout_weight="4"
@@ -188,68 +191,76 @@
 
     </LinearLayout>
 
-<!--
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reload"
+        android:id="@+id/refreshButton"
+        android:layout_below="@+id/row5"
+        android:layout_centerHorizontal="true"/>
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:id="@+id/headView"
-            android:layout_marginTop="60dp"
-            android:layout_marginLeft="45dp"
-            android:background="@drawable/head"/>
+    <!--
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:id="@+id/accessoryImage"
-            android:layout_marginTop="160dp"
-            android:layout_marginLeft="-80dp"
-            android:background="@drawable/accessories"
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/headView"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="45dp"
+                android:background="@drawable/head"/>
 
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/accessoryImage"
+                android:layout_marginTop="160dp"
+                android:layout_marginLeft="-80dp"
+                android:background="@drawable/accessories"
+
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Accessory suggestion"
+            android:id="@+id/accessory"
+            android:layout_below="@+id/head"
+            android:layout_alignLeft="@+id/head"
+            android:layout_alignStart="@+id/head"
+            android:layout_marginTop="70dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shirt suggestion"
+            android:id="@+id/shirt"
+            android:layout_below="@+id/accessory"
+            android:layout_alignLeft="@+id/accessory"
+            android:layout_alignStart="@+id/accessory"
+            android:layout_marginTop="70dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pant suggestion"
+            android:id="@+id/pant"
+            android:layout_below="@+id/shirt"
+            android:layout_alignLeft="@+id/shirt"
+            android:layout_alignStart="@+id/shirt"
+            android:layout_marginTop="70dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shoe suggestion"
+            android:id="@+id/shoe"
+            android:layout_below="@+id/pant"
+            android:layout_alignLeft="@+id/pant"
+            android:layout_alignStart="@+id/pant"
+            android:layout_marginTop="70dp"
             />
-    </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Accessory suggestion"
-        android:id="@+id/accessory"
-        android:layout_below="@+id/head"
-        android:layout_alignLeft="@+id/head"
-        android:layout_alignStart="@+id/head"
-        android:layout_marginTop="70dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Shirt suggestion"
-        android:id="@+id/shirt"
-        android:layout_below="@+id/accessory"
-        android:layout_alignLeft="@+id/accessory"
-        android:layout_alignStart="@+id/accessory"
-        android:layout_marginTop="70dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pant suggestion"
-        android:id="@+id/pant"
-        android:layout_below="@+id/shirt"
-        android:layout_alignLeft="@+id/shirt"
-        android:layout_alignStart="@+id/shirt"
-        android:layout_marginTop="70dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Shoe suggestion"
-        android:id="@+id/shoe"
-        android:layout_below="@+id/pant"
-        android:layout_alignLeft="@+id/pant"
-        android:layout_alignStart="@+id/pant"
-        android:layout_marginTop="70dp"
-        />
-
--->
+    -->
 
 </RelativeLayout>
