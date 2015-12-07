@@ -35,21 +35,10 @@ public class Recommender {
                 mTempType = t;
             }
         }
-        // Build the ClothingItem array
-        ArrayList<ClothingItem> recommendations = new ArrayList<ClothingItem>();
 
         ClothingItem result = dbhelper.getClothingItem(mTempType, bodyPart, mGender);
-        //recommendations =;
         return result;
     }
 
-        /*
-    public ArrayList<ClothingItem> Recommender(Forecast forecast) {
-
-        ArrayList<ClothingItem> recommendations = new ArrayList<ClothingItem>();
-        return recommendations;
-
-        }
-        */
 
 }

@@ -36,8 +36,8 @@ public class ClothesRecLoader {
 
     public void insertLegs() {
 
-        mydb.insertClothingItem(Types.Temp.COLD, Types.Precip.NONE, Types.BodyPart.LEGS, 1, "Levi 501 Jeans");
-        mydb.insertClothingItem(Types.Temp.COLD, Types.Precip.NONE, Types.BodyPart.LEGS, 0, "Levi 701 Jeans");
+        mydb.insertClothingItem(Types.Temp.COLD, Types.Precip.NONE, Types.BodyPart.LEGS, 1, "Men's Levi 501 Jeans");
+        mydb.insertClothingItem(Types.Temp.COLD, Types.Precip.NONE, Types.BodyPart.LEGS, 0, "Women's Levi 701 Jeans");
 
         mydb.insertClothingItem(Types.Temp.WARM, Types.Precip.NONE, Types.BodyPart.LEGS, 1, "CS Student Cargo Shorts");
         mydb.insertClothingItem(Types.Temp.WARM, Types.Precip.NONE, Types.BodyPart.LEGS, 0, "High Waisted Jean Shorts");
