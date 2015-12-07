@@ -1,4 +1,6 @@
-####Project part 2 is [here](https://github.com/abgordon/CSCI4448_project/blob/master/Reports/Part2/project2.pdf)
+####Presentation is [here](https://github.com/abgordon/CSCI4448_project/blob/master/Reports/Part3/presentation.pptx)
+####Final Report is [here](https://github.com/abgordon/CSCI4448_project/tree/master/Reports/Part4)
+####Video demo is [here](https://youtu.be/F7god6X1dH0)
 
 CSCI4448: Object Oriented Design group project
 
